@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio - GitHub Prep Project</title>
+    <link rel="stylesheet" href="style2.css"> <!--Halloween Theme-->
+    <!--<link rel="stylesheet" href="style.css"> <!-- Normal Theme -->
+</head>
+<body>
+
+    <!-- Header and Welcome Message Container -->
+    <header>
+        <!-- Dark Mode Toggle Switch at the top of the page -->
+        <div class="dark-mode-container">
+            <label for="dark-mode-toggle">Dark Mode</label>
+            <input type="checkbox" id="dark-mode-toggle">
+        </div>
+        
+        <h1 id="welcome-message">Welcome to My Portfolio!</h1>
+        <p>Your journey into my web development work begins here.</p>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#featured-content">Featured Content</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- About Section -->
+        <section id="about">
+            <h2>About Me</h2>
+            <p>Hello! I am a passionate about getting my degree and being done with school. This portfolio represents my growth and structured progress in creating clean, accessible, and interactive web applications. I no longer want to continue this journey. I want to pursue work but I know this opens up new opportunities--so I endure.</p>
+            
+            <!-- Skills List populated dynamically via loop in JavaScript -->
+            <h3>My Skills & Technologies</h3>
+            <ul id="skills-list"></ul>
+        </section>
+
+        <!-- Featured Content Section (Conditional Logic) -->
+        <section id="featured-content">
+            <h2>Featured Content</h2>
+            
+            <!-- University Resources Div -->
+            <div id="university-resources" class="resource-box">
+                <h3>University Resources</h3>
+                <p>Check out my program information:</p>
+                <ul>
+                    <li><a href="https://www.ecpi.edu" target="_blank">ECPI Program Home Page</a></li>
+                </ul>
+            </div>
+
+            <!-- Personal Projects Div (Updated with actual project details) -->
+            <div id="personal-projects" class="resource-box">
+                <h3>Featured Projects</h3>
+                <p>Explore highlights from my project portfolio:</p>
+                <div class="project-links-grid">
+                    <a href="https://github.com/JLew1234/SDC260_Storefront-Website.git" target="_blank">
+                        <img src="Images/mom_baby.png" alt="Project 1: Mother holding her baby">
+                    </a>
+                    <a href="https://github.com/JLew1234/SDC260_GlassWorks.git" target="_blank">
+                        <img src="4.5_Lewellen\images\suncatcher.png" alt="Project 2 Blown Glass Suncatcher">
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2>Projects</h2>
+            <p>Check out some of my previous work and placeholders below:</p>
+            <div class="projects-grid" id="projects-container">
+                <div class="project-card">
+                    <h3>Project 1</h3>
+                    <a href="https://github.com/JLew1234/SDC260_Storefront-Website.git" target="_blank">
+                        <img src="C:\Users\Papa Jon\OneDrive\Desktop\School\SDC355\Project_Lewellen\2.9_Lewellen\Images\mom_baby.png" alt="Project 1: Mother holding her baby">
+                    </a>
+                    <p>Description of project one.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Project 2</h3>
+                    <a href="https://github.com/JLew1234/SDC260_GlassWorks.git" target="_blank">
+                        <img src="4.5_Lewellen\images\suncatcher.png" alt="Project 2 Blown Glass Suncatcher">
+                    </a>
+                    <p>Description of project two.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Project 3</h3>
+                    <a href="https://github.com" target="_blank">
+                        <img src="https://via.placeholder.com/150" alt="Project 3 Thumbnail">
+                    </a>
+                    <p>Description of project three.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <form id="contact-form" action="#" method="POST">
+                <label for="name">Sender Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Sender Address (Email):</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+
+                <button type="submit" id="submit-btn">Submit</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- JavaScript Implementation for Control Flow, Loops, and Interactivity -->
+    <script>
+        // 1. Personalized Welcome Prompt
+        let userName = prompt("Please enter your name:");
+        if (userName && userName.trim() !== "") {
+            let welcomeHeading = document.getElementById("welcome-message");
+            welcomeHeading.textContent = "Welcome, " + userName + ", to My Portfolio!";
+        }
+
+        // 2. Loop Implementation: Display at least 5 skills as a bulleted list in About section
+        const skillsArray = ["HTML", "CSS", "JavaScript", "Git", "GitHub"];
+        const skillsListElement = document.getElementById("skills-list");
+        
+        skillsArray.forEach(function(skill) {
+            let listItem = document.createElement("li");
+            listItem.textContent = skill;
+            skillsListElement.appendChild(listItem);
+        });
+
+        // 3. Conditional Logic: Display/Hide Featured Content based on number of projects
+        const projectCards = document.querySelectorAll(".projects-grid .project-card");
+        const universityDiv = document.getElementById("university-resources");
+        const personalProjectsDiv = document.getElementById("personal-projects");
+
+        if (projectCards.length < 3) {
+            universityDiv.style.display = "block";
+            personalProjectsDiv.style.display = "block";
+        } else {
+            universityDiv.style.display = "none";
+            personalProjectsDiv.style.display = "block";
+        }
+
+        // 4. Dark Mode Slider Toggle using addEventListener and classList.toggle
+        const darkModeToggle = document.getElementById("dark-mode-toggle");
+        darkModeToggle.addEventListener("change", function() {
+            document.body.classList.toggle("dark-mode");
+        });
+
+        // ==========================================
+        // PROJECT 3.9: DOM MANIPULATION & TIMERS
+        // ==========================================
+
+        // A. Dynamically Add a New Section or Message Using JavaScript
+        const newProjectNotice = document.createElement("p");
+        newProjectNotice.textContent = "🚀 Latest Update: Added modern glassworks UI components and reactive state handling to my project layout!";
+        newProjectNotice.style.fontWeight = "bold";
+        newProjectNotice.style.color = "#38bdf8";
+        newProjectNotice.style.marginTop = "10px";
+        
+        // Append it to the "Projects" section
+        const projectsSection = document.getElementById("projects");
+        projectsSection.appendChild(newProjectNotice);
+
+        // B. Reference and Modify Existing Elements with Selectors
+        const aboutHeading = document.querySelector("#about h2");
+        aboutHeading.textContent = "About Me & My Professional Growth";
+        aboutHeading.style.borderBottom = "2px solid #3498db";
+        aboutHeading.style.paddingBottom = "5px";
+
+        const mainHeader = document.querySelector("header");
+        mainHeader.style.borderBottom = "4px solid #f97316";
+
+        // C. Add a Timed Confirmation for Form Submissions
+        const contactForm = document.getElementById("contact-form");
+        const submitButton = document.getElementById("submit-btn");
+
+        if (contactForm) {
+            contactForm.addEventListener("submit", function(event) {
+                event.preventDefault(); // 1. Prevent default form submission behavior
+
+                // Grab user name for personalized confirmation
+                let inputName = document.getElementById("name").value.trim();
+                let displayName = inputName !== "" ? inputName : "Guest";
+
+                // Create or reuse status message container
+                let statusMessage = document.getElementById("form-status-message");
+                if (!statusMessage) {
+                    statusMessage = document.createElement("p");
+                    statusMessage.id = "form-status-message";
+                    statusMessage.style.marginTop = "15px";
+                    statusMessage.style.fontWeight = "bold";
+                    contactForm.appendChild(statusMessage);
+                }
+
+                // 2. Display a loading / sending message dynamically
+                statusMessage.textContent = "Sending message...";
+                statusMessage.style.color = "#f97316";
+
+                // Disable submit button temporarily to prevent duplicate clicks
+                submitButton.disabled = true;
+
+                // 3. Use setTimeout() to delay the confirmation message by 2–3 seconds
+                setTimeout(() => {
+                    // 4. Replace loading message with confirmation message
+                    statusMessage.textContent = "Thank you, " + displayName + ", your message has been sent successfully!";
+                    statusMessage.style.color = "#22c55e";
+                    
+                    // Re-enable button and reset form fields
+                    submitButton.disabled = false;
+                    contactForm.reset();
+                }, 2500); // 2.5 seconds delay
+            });
+        }
+    </script>
+
+</body>
+</html>
